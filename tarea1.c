@@ -4,74 +4,121 @@
 #include<time.h>
 #include<math.h>
 #include<string.h>
+#include<ctype.h>
 
 typedef struct s_personaje{
-    char nombre[20];
-    int popularidad;
-}PERSONAJE;
+char nombre[50];
+int popularidad;
+struct s_personaje *sgte;
+} *PERSONAJE;
 
-typedef struct s_nodo{
-    PERSONAJE pj;
-    struct s_nodo *sgte;
-}*NODO;
 
 typedef struct s_lista{
-    NODO primero;
-    int tam;
-}LISTA;
+PERSONAJE primero;
+int total;
+} LISTA;
 
-LISTA crearLista(){
-    LISTA lst;
-    lst.primero = NULL;
-    lst.tam = 0;
-    return lst;
+
+/* Crea y retorna una lista vac´ıa */
+LISTA creaLista(){
+    LISTA lista;
+    lista->primero = NULL;
+    lista->total = 0;
+    return lista;
+}
+/* Crea y retorna un personaje */
+PERSONAJE crear(char *nombre, int popularidad){
+    PERSONAJE nuevo = (PERSONAJE)malloc(sizeof(struct s_personaje));
+    up_nombre = toupper(nombre[0]);
+    strcpy(nuevo->nombre, nombre);
+    nuevo->popularidad = popularidad;
+    nuevo->sgte = NULL;
+    return nuevo;
 }
 
-void insertarNodo(LISTA *lst, PERSONAJE p){
-    NODO nuevo = (NODO)malloc(sizeof(struct s_nodo));
-    nuevo->pj = p;
-    nuevo->sgte = NULL;
-    if(lst->primero == NULL){
-        lst->primero = nuevo;
+int comparar(char *nombre1, char *nombre2){
+    int i = 0;
+    while(nombre1[i] != '\0' && nombre2[i] != '\0'){
+        if(tolower(nombre1[i]) != tolower(nombre2[i])){
+            return 0;
+        }
+        i++;
+    }
+    if(tolower(nombre1[i]) == '\0' && tolower(nombre2[i]) == '\0'){
+        return 1;
+    }
+    return 0;
+}
+
+/* Agrega un personaje a la lista y retorna la lista */
+LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo){
+    PERSONAE aux = lista->primero;
+    if(aux == NULL){
+        lista->primero = nuevo;
     }else{
-        NODO aux = lst->primero;
         while(aux->sgte != NULL){
-            if(aux->pj.nombre == p.nombre){
-                printf("El personaje ya existe\n");
-                return;
-            }
+            if(comparar(aux->nombre, nuevo->nombre) == 1){
+                printf("\nEl personaje ya existe\n");
+                return lista;}
             aux = aux->sgte;
         }
-        if(aux->pj.nombre == p.nombre){
-            printf("El personaje ya existe\n");
-            return;
+        if(comparar(aux->nombre, nuevo->nombre) == 1){
+            printf("\nEl personaje ya existe\n");
+            return lista;
         }
         aux->sgte = nuevo;
+        
     }
-    lst->tam++;
+    lista->total++;
+    return lista;
 }
 
-void imprimirLista(LISTA lst){
-    NODO aux = lst.primero;
-    while(aux != NULL){
-        printf("Nombre: %s\n", aux->pj.nombre);
-        printf("Popularidad: %d\n\n", aux->pj.popularidad);
-        aux = aux->sgte;
+
+/* Muestra los personajes registrados */
+void verPersonajes(LISTA lista){
+    PERSONAJE aux = lista->primero;
+        while(aux != NULL){
+            printf("\nNombre: %s\nPopularidad: %d\n", aux->nombre, aux->popularidad);
+            aux = aux->sgte;
+        }
+    }
+
+/* Elimina un personaje de la lista, dada la ubicaci´on x (partiendo desde 1) */
+LISTA elimina(LISTA lst, int x){
+    PERSONAJE aux = lst->primero;
+    PERSONAJE anterior;
+
+    if(x == 1){
+        lst->primero = aux->sgte;
+        lst->total--;
+        return lst;
+    }elseif(lst->total >= x){
+        
+        for(int i=1; i<x;i++){
+            anterior = aux;
+            aux = aux->sgte;
+        }
+        anterior->sgte = aux;
+        lst->total--;
+        return lst;
+    }elseif(if lst->total < x){
+        printf("\nNo existe un personaje con la posicion %d\n", x);
+    }
+
+}
+
+/* Elimina un personaje, dado su nombre */
+LISTA eliminaPorNombre(LISTA lst, char *victima){
+    PERSONAJE aux = lst->primero;
+    
+    while(aux->siguiente != NULL){
+        
     }
 }
-
-PERSONAJE crearPersonaje(){
-    PERSONAJE p;
-    int pop;
-    printf("Ingrese el nombre del personaje: ");
-    scanf("%s", p.nombre);
-    printf("Ingrese la popularidad del personaje: ");
-    scanf("%d", &pop);
-    p.popularidad = pop;
-    return p;
-
-
-}
+/* Crea y retorna una nueva lista intercambiando el orden de 2 personajes (ubicados en la posici´on x e y) */
+LISTA intercambio(LISTA lista, int x, int y);
+/* Inserta los elementos de lst_b en la lst_a luego de la ubicaci´on x */
+LISTA insertar(LISTA lst_a, LISTA lst_b, int x);
 
 int main() {
     int op;
