@@ -71,7 +71,6 @@ PERSONAJE crearPersonaje(){
     return p;
 
 
-
 }
 
 int main() {
