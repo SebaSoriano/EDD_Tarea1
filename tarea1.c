@@ -20,16 +20,15 @@ int total;
 
 
 /* Crea y retorna una lista vac´ıa */
-LISTA creaLista(){
+LISTA crearLista(){
     LISTA lista;
-    lista->primero = NULL;
-    lista->total = 0;
+    lista.primero = NULL;
+    lista.total = 0;
     return lista;
 }
 /* Crea y retorna un personaje */
 PERSONAJE crear(char *nombre, int popularidad){
     PERSONAJE nuevo = (PERSONAJE)malloc(sizeof(struct s_personaje));
-    up_nombre = toupper(nombre[0]);
     strcpy(nuevo->nombre, nombre);
     nuevo->popularidad = popularidad;
     nuevo->sgte = NULL;
@@ -52,9 +51,9 @@ int comparar(char *nombre1, char *nombre2){
 
 /* Agrega un personaje a la lista y retorna la lista */
 LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo){
-    PERSONAE aux = lista->primero;
+    PERSONAJE aux = lista.primero;
     if(aux == NULL){
-        lista->primero = nuevo;
+        lista.primero = nuevo;
     }else{
         while(aux->sgte != NULL){
             if(comparar(aux->nombre, nuevo->nombre) == 1){
@@ -69,14 +68,14 @@ LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo){
         aux->sgte = nuevo;
         
     }
-    lista->total++;
+    lista.total++;
     return lista;
 }
 
 
 /* Muestra los personajes registrados */
 void verPersonajes(LISTA lista){
-    PERSONAJE aux = lista->primero;
+    PERSONAJE aux = lista.primero;
         while(aux != NULL){
             printf("\nNombre: %s\nPopularidad: %d\n", aux->nombre, aux->popularidad);
             aux = aux->sgte;
@@ -85,23 +84,23 @@ void verPersonajes(LISTA lista){
 
 /* Elimina un personaje de la lista, dada la ubicaci´on x (partiendo desde 1) */
 LISTA elimina(LISTA lst, int x){
-    PERSONAJE aux = lst->primero;
+    PERSONAJE aux = lst.primero;
     PERSONAJE anterior;
 
     if(x == 1){
-        lst->primero = aux->sgte;
-        lst->total--;
+        lst.primero = aux->sgte;
+        lst.total--;
         return lst;
-    }elseif(lst->total >= x){
+    } else if (lst.total >= x) {
         
         for(int i=1; i<x;i++){
             anterior = aux;
             aux = aux->sgte;
         }
         anterior->sgte = aux;
-        lst->total--;
+        lst.total--;
         return lst;
-    }elseif(if lst->total < x){
+    }else if(lst.total < x){
         printf("\nNo existe un personaje con la posicion %d\n", x);
     }
 
@@ -109,9 +108,9 @@ LISTA elimina(LISTA lst, int x){
 
 /* Elimina un personaje, dado su nombre */
 LISTA eliminaPorNombre(LISTA lst, char *victima){
-    PERSONAJE aux = lst->primero;
+    PERSONAJE aux = lst.primero;
     
-    while(aux->siguiente != NULL){
+    while(aux->sgte != NULL){
         
     }
 }
