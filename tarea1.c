@@ -19,7 +19,7 @@ int total;
 } LISTA;
 
 
-/* Crea y retorna una lista vac´ıa */
+/* Crea y retorna una lista vacia */
 LISTA crearLista(){
     LISTA lista;
     lista.primero = NULL;
@@ -76,13 +76,18 @@ LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo){
 /* Muestra los personajes registrados */
 void verPersonajes(LISTA lista){
     PERSONAJE aux = lista.primero;
-        while(aux != NULL){
-            printf("\nNombre: %s\nPopularidad: %d\n", aux->nombre, aux->popularidad);
-            aux = aux->sgte;
+    PERSONAJE first = aux;
+    while(aux != NULL){
+        printf("\nNombre: %s\nPopularidad: %d\n", aux->nombre, aux->popularidad);
+        aux = aux->sgte;
+        if (aux == first) {
+            printf("\nDetected a cycle in the list. Stopping to prevent infinite loop.\n");
+            break;
         }
     }
+}
 
-/* Elimina un personaje de la lista, dada la ubicaci´on x (partiendo desde 1) */
+/* Elimina un personaje de la lista, dada la ubicacion x (partiendo desde 1) */
 LISTA elimina(LISTA lst, int x){
     PERSONAJE aux = lst.primero;
     PERSONAJE anterior;
@@ -115,12 +120,104 @@ LISTA eliminaPorNombre(LISTA lst, char *victima){
     }
 }
 /* Crea y retorna una nueva lista intercambiando el orden de 2 personajes (ubicados en la posici´on x e y) */
-LISTA intercambio(LISTA lista, int x, int y);
+LISTA intercambio(LISTA lista, int x, int y){
+    PERSONAJE siguiente_a_px = lista.primero, _px = NULL;
+    PERSONAJE siguiente_a_py = lista.primero, _py = NULL;
+    PERSONAJE aux = lista.primero;
+    //LISTA lista_nueva = crearLista();
+    int cont_x = 1, cont_y = 1;
+
+    if(x > lista.total || y > lista.total || x < 1 || y < 1){
+        printf("\nNo existe un personaje con la posicion %d o %d\n", x, y);
+        return lista;
+
+    } else if(x == y){
+        printf("No se puede intercambiar un personaje consigo mismo\n");
+        return lista;
+
+    } else {
+        /* Casos para cambiar calquiera de la lista menos la cabeza */
+        if(x < y){
+            while(cont_x < x){
+                _px = siguiente_a_px;
+                siguiente_a_px = siguiente_a_px->sgte;
+                cont_x++;
+            }
+            while(cont_y != y){
+                _px = siguiente_a_py;
+                siguiente_a_py = siguiente_a_py->sgte;
+                cont_y++;
+            }
+            
+        aux = _px;
+        siguiente_a_px->sgte = siguiente_a_py->sgte;
+        siguiente_a_py->sgte = aux->sgte;
+        aux->sgte = siguiente_a_py;
+        _px->sgte = siguiente_a_px;
+        } else {
+            while(cont_x != x){
+                _px = siguiente_a_px;
+                siguiente_a_px = siguiente_a_px->sgte;
+                cont_x++;
+            }
+            while(cont_y != y){
+                _px = siguiente_a_py;
+                siguiente_a_py = siguiente_a_py->sgte;
+                cont_y++;
+            }
+
+        aux = siguiente_a_px->sgte;
+        siguiente_a_px->sgte = siguiente_a_py->sgte;
+        siguiente_a_py->sgte = _px->sgte;
+        _px->sgte = siguiente_a_py;
+        _px->sgte = siguiente_a_px;
+        }
+        
+    }
+        /* Casos especiales para cambiar la cabeza de la lista */
+        if(x == 1){
+            lista.primero = siguiente_a_py;
+            _px->sgte = siguiente_a_px;
+            siguiente_a_px->sgte = siguiente_a_py->sgte;
+            siguiente_a_py->sgte = _px->sgte;
+        } else if(y == 1){
+            lista.primero = siguiente_a_px;
+            _px->sgte = siguiente_a_py;
+            siguiente_a_py->sgte = siguiente_a_px->sgte;
+            siguiente_a_px->sgte = _px->sgte;
+        } else {
+            _px->sgte = siguiente_a_py;
+            siguiente_a_py->sgte = siguiente_a_px->sgte;
+            _px->sgte = siguiente_a_px;
+            siguiente_a_px->sgte = siguiente_a_py->sgte;
+        }
+    return lista;
+}
 /* Inserta los elementos de lst_b en la lst_a luego de la ubicaci´on x */
 LISTA insertar(LISTA lst_a, LISTA lst_b, int x);
 
 int main() {
-    int op;
+    PERSONAJE lukas = crear("1-Lukas", 10);
+    PERSONAJE maxi = crear("2-Maxi", 10);
+    PERSONAJE santi = crear("3-Santi", 10);
+    PERSONAJE hugo = crear("4-Hugo", 10);
+    PERSONAJE cristopher = crear("5-Cristopher", 10);
+
+    LISTA lst = crearLista();
+
+    lst = agregaPersonaje(lst, lukas);
+    lst = agregaPersonaje(lst, maxi);
+    lst = agregaPersonaje(lst, santi);
+    lst = agregaPersonaje(lst, hugo);
+    lst = agregaPersonaje(lst, cristopher);
+
+    verPersonajes(lst);
+
+    lst = intercambio(lst, 2, 3);
+
+    verPersonajes(lst);
+
+    /*int op;
     do{
         printf("Menu:\n");
         printf("1. Crear listas\n");
@@ -145,6 +242,9 @@ int main() {
              printf("Invalid choice\n");
              break;
     }
-    }while(op!=0);   
+    }while(op!=0); */
+
+
+
     return 1;
 }
