@@ -4,14 +4,16 @@
 
 1. Presentar un menu de opciones que se debe repetir hasta que el usuario indique salir del
 programa.
+
 2. Opciones de menu para:
+
 (a) Crear 2 listas de personajes, ingresando para cada personaje su nombre y su popularidad.
 Luego de crearlas se debe mostrar el contenido de cada una de ellas. Los personajes deben
 ser ´unicos en la lista. ** TODO **
 
-(b) Mostrar la cantidad de elementos de cada lista creada. ** LISTO **
+(b) Mostrar la cantidad de elementos de cada lista creada. **LISTO**
 
-(c) Mostrar los elementos de 2 listas creadas. ** LISTO **
+(c) Mostrar los elementos de 2 listas creadas. **LISTO**
 
 ~~(d) Dada una ubicaci´on, eliminar de una de las listas (seleccionada por el usuario) el elemento
 ubicado en el valor ingresado.~~
@@ -26,12 +28,12 @@ las listas originales deben mantenerse intactas.~~
 
 (g) Considerando las listas creadas en la opcion (a), seleccionar el orden de tratamiento de
 las listas y un valor ingresado (que representa una ubicacion dentro de la primera lista
-seleccionada) se pide insertar la segunda lista despues de la ubicacion indicada. **TODO **
+seleccionada) se pide insertar la segunda lista despues de la ubicacion indicada. **TODO**
 
 (h) Dados 2 valores enteros que representan popularidad mınima y maxima, crear una lista
 de los personajes de una de las listas (seleccionada por el usuario) de la opci´on (a)
 considerando todos los personajes cuya popularidad se encuentre dentro del rango de
-popularidad, luego deber´a mostrar la lista resultado. ** TODO **
+popularidad, luego deber´a mostrar la lista resultado. **TODO**
 
 (i) Salir del programa ** TODO **
 

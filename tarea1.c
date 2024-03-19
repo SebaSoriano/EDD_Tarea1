@@ -35,26 +35,35 @@ LISTA seleccion(LISTA lst, int minimo, int maximo);
 
 
 int main() {
-    PERSONAJE lukas = crear("1-Lukas", 10);
-    PERSONAJE maxi = crear("2-Maxi", 10);
-    PERSONAJE santi = crear("3-Santi", 10);
-    PERSONAJE hugo = crear("4-Hugo", 10);
-    PERSONAJE cristopher = crear("5-Cristopher", 10);
+    PERSONAJE lukas = crear("1-Lukas", 1);
+    PERSONAJE maxi = crear("2-Maxi", 2);
+    PERSONAJE santi = crear("3-Santi", 3);
+    PERSONAJE hugo = crear("4-Hugo", 4);
+    PERSONAJE cristopher = crear("5-Cristopher", 5);
 
     LISTA lst = creaLista();
-
+    LISTA lst2 = creaLista();
     lst = agregaPersonaje(lst, lukas);
     lst = agregaPersonaje(lst, maxi);
     lst = agregaPersonaje(lst, santi);
     lst = agregaPersonaje(lst, hugo);
     lst = agregaPersonaje(lst, cristopher);
 
+    lst2 = agregaPersonaje(lst2, crear("6-Andres", 6));
+    lst2 = agregaPersonaje(lst2, crear("7-Juan", 7));
+    lst2 = agregaPersonaje(lst2, crear("8-Pedro", 8));
+    lst2 = agregaPersonaje(lst2, crear("9-Jose", 9));
+    lst2 = agregaPersonaje(lst2, crear("10-Mateo", 10));
+
     printf("\nLista 1:\n");
     verPersonajes(lst);
 
-    lst = intercambio(lst, 5,1);
-    printf("\nLista 3:\n");
-    verPersonajes(lst);
+    LISTA combinadas = insertar(lst, lst2, 5);
+    printf("\nLista combinadas:\n");
+    verPersonajes(combinadas);
+    LISTA seleccionados = seleccion(combinadas, 3, 7);
+    printf("\nLista seleccionadas (3-7):\n");
+    verPersonajes(seleccionados);
 
     /*int op;
     do{
@@ -181,17 +190,21 @@ LISTA elimina(LISTA lst, int x){
 
 }
 
+/* Crea y retorna una nueva lista con los mismos personajes de la lista original */
+LISTA copiarLista(LISTA lst){
+    PERSONAJE aux = lst.primero;
+    LISTA nueva = creaLista();
+    for(int i=1; i<=lst.total; i++){
+        nueva = agregaPersonaje(nueva, crear(aux->nombre, aux->popularidad));
+        aux = aux->sgte;
+    }
+    return nueva;
+}
 
 /* Crea y retorna una nueva lista intercambiando el orden de 2 personajes (ubicados en la posici´on x e y) */
 LISTA intercambio(LISTA lista, int x, int y){
     PERSONAJE aux = lista.primero;
-    PERSONAJE auxnuevo = NULL;
-    LISTA nueva = creaLista();
-    for(int i=1; i<=lista.total; i++){
-        auxnuevo = crear(aux->nombre, aux->popularidad);
-        nueva = agregaPersonaje(nueva, auxnuevo);
-        aux = aux->sgte;
-    }
+    LISTA nueva = copiarLista(lista);
     aux = nueva.primero;
 
     PERSONAJE px = NULL;
@@ -320,11 +333,45 @@ LISTA eliminaPorNombre(LISTA lst, char *victima){
 
 /* Inserta los elementos de lst_b en la lst_a luego de la ubicacion x */
 LISTA insertar(LISTA lst_a, LISTA lst_b, int x){
- //------------------------------------TODO-----------------------------------
+    LISTA copia_a = copiarLista(lst_a);
+    LISTA copia_b = copiarLista(lst_b);
+
+    PERSONAJE aux = NULL;
+    PERSONAJE anterior = NULL;
+    PERSONAJE ultimo = copia_b.primero;
+    while(ultimo->sgte != NULL){
+        ultimo = ultimo->sgte;
+    }
+    if(x == 1){
+        anterior = copia_a.primero;
+        aux = anterior->sgte;
+        anterior->sgte = copia_b.primero;
+        ultimo->sgte = aux;
+        return copia_a;
+    }
+    if(x > copia_a.total){
+        printf("\nNo existe un personaje con la posicion %d\n", x);
+        return copia_a;
+    }
+    aux = copia_a.primero;
+    for(int i=1; i<=x;i++){
+        anterior = aux;
+        aux = aux->sgte;
+    }
+    anterior->sgte = copia_b.primero;
+    ultimo->sgte = aux;
+    return copia_a;
 }
 
 /* Genera una lista considerando todos los personajes de lst cuya popularidad se encuentre entre los valores mınimo y maximo */
 LISTA seleccion(LISTA lst, int minimo, int maximo){
-    //------------------------------------TODO-----------------------------------
-
+    LISTA nueva = creaLista();
+    PERSONAJE aux = lst.primero;
+    for(int i=1; i<=lst.total; i++){
+        if(aux->popularidad >= minimo && aux->popularidad <= maximo){
+            nueva = agregaPersonaje(nueva, crear(aux->nombre, aux->popularidad));
+        }
+        aux = aux->sgte;
+    }
+    return nueva;
 }
