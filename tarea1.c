@@ -58,7 +58,8 @@ LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo){
         while(aux->sgte != NULL){
             if(comparar(aux->nombre, nuevo->nombre) == 1){
                 printf("\nEl personaje ya existe\n");
-                return lista;}
+                return lista;
+                }
             aux = aux->sgte;
         }
         if(comparar(aux->nombre, nuevo->nombre) == 1){
@@ -121,77 +122,115 @@ LISTA eliminaPorNombre(LISTA lst, char *victima){
 }
 /* Crea y retorna una nueva lista intercambiando el orden de 2 personajes (ubicados en la posici´on x e y) */
 LISTA intercambio(LISTA lista, int x, int y){
-    PERSONAJE siguiente_a_px = lista.primero, _px = NULL;
-    PERSONAJE siguiente_a_py = lista.primero, _py = NULL;
     PERSONAJE aux = lista.primero;
-    //LISTA lista_nueva = crearLista();
+    PERSONAJE auxnuevo = NULL;
+    LISTA nueva = crearLista();
+    for(int i=1; i<=lista.total; i++){
+        auxnuevo = crear(aux->nombre, aux->popularidad);
+        nueva = agregaPersonaje(nueva, auxnuevo);
+        aux = aux->sgte;
+            }
+    aux = nueva.primero;
+
+    PERSONAJE px = NULL;
+    PERSONAJE py = NULL;
+    PERSONAJE apx = NULL;
+    PERSONAJE apy = NULL;
+    ;
     int cont_x = 1, cont_y = 1;
 
     if(x > lista.total || y > lista.total || x < 1 || y < 1){
         printf("\nNo existe un personaje con la posicion %d o %d\n", x, y);
-        return lista;
+        return nueva;
 
-    } else if(x == y){
+    }else if(x == y){
         printf("No se puede intercambiar un personaje consigo mismo\n");
-        return lista;
-
-    } else {
-        /* Casos para cambiar calquiera de la lista menos la cabeza */
-        if(x < y){
-            while(cont_x < x){
-                _px = siguiente_a_px;
-                siguiente_a_px = siguiente_a_px->sgte;
-                cont_x++;
-            }
-            while(cont_y != y){
-                _px = siguiente_a_py;
-                siguiente_a_py = siguiente_a_py->sgte;
-                cont_y++;
-            }
-            
-        aux = _px;
-        siguiente_a_px->sgte = siguiente_a_py->sgte;
-        siguiente_a_py->sgte = aux->sgte;
-        aux->sgte = siguiente_a_py;
-        _px->sgte = siguiente_a_px;
-        } else {
-            while(cont_x != x){
-                _px = siguiente_a_px;
-                siguiente_a_px = siguiente_a_px->sgte;
-                cont_x++;
-            }
-            while(cont_y != y){
-                _px = siguiente_a_py;
-                siguiente_a_py = siguiente_a_py->sgte;
-                cont_y++;
-            }
-
-        aux = siguiente_a_px->sgte;
-        siguiente_a_px->sgte = siguiente_a_py->sgte;
-        siguiente_a_py->sgte = _px->sgte;
-        _px->sgte = siguiente_a_py;
-        _px->sgte = siguiente_a_px;
-        }
-        
-    }
-        /* Casos especiales para cambiar la cabeza de la lista */
+        return nueva;
+    // Si x o y son el primer elemento
+    }else if (x == 1 || y == 1){
         if(x == 1){
-            lista.primero = siguiente_a_py;
-            _px->sgte = siguiente_a_px;
-            siguiente_a_px->sgte = siguiente_a_py->sgte;
-            siguiente_a_py->sgte = _px->sgte;
-        } else if(y == 1){
-            lista.primero = siguiente_a_px;
-            _px->sgte = siguiente_a_py;
-            siguiente_a_py->sgte = siguiente_a_px->sgte;
-            siguiente_a_px->sgte = _px->sgte;
-        } else {
-            _px->sgte = siguiente_a_py;
-            siguiente_a_py->sgte = siguiente_a_px->sgte;
-            _px->sgte = siguiente_a_px;
-            siguiente_a_px->sgte = siguiente_a_py->sgte;
+            px = nueva.primero;
+            py = nueva.primero;
+            for(int i=1; i<y;i++){
+                apy = aux;
+                py = aux->sgte;
+                aux = aux->sgte;
+            }
+            apy->sgte = px;
+            nueva.primero = py;
+            aux = px->sgte;
+            px->sgte = py->sgte;
+            py->sgte = aux;
+        }else if(y == 1){
+            px = nueva.primero;
+            py = nueva.primero;
+            for(int i=1; i<x;i++){
+                apx = aux;
+                px = aux->sgte;
+                aux = aux->sgte;
+            }
+            apx->sgte = py;
+            nueva.primero = px;
+            aux = py->sgte;
+            py->sgte = px->sgte;
+            px->sgte = aux;
         }
-    return lista;
+    }
+    // Si x o y estan adyacentes uno del otro
+    else if(x == y-1 || y == x-1){
+        PERSONAJE amenor = NULL;
+        PERSONAJE mayor = NULL;
+        PERSONAJE menor = NULL;
+
+            while(aux != NULL){
+                if(cont_x == x-1){
+                    apx = aux;
+                    px = aux->sgte;
+                }
+                if(cont_y == y-1){
+                    apy = aux;
+                    py = aux->sgte;
+                }
+                aux = aux->sgte;
+                cont_x++;
+                cont_y++;
+            }
+        if(x<y){
+            mayor = py;
+            menor = px;
+            amenor = apx;
+        }else{
+            mayor = px;
+            menor = py;
+            amenor = apy;
+        }
+        aux = menor->sgte;
+        menor->sgte = mayor->sgte;
+        mayor->sgte = menor;
+        amenor->sgte = mayor;
+    }
+    // Si x o y estan separados por mas de un elemento Y ninguno de los dos es el primero
+    else{
+        while(aux != NULL){
+            if(cont_x == x-1){
+                apx = aux;
+                px = aux->sgte;
+            }
+            if(cont_y == y-1){
+                apy = aux;
+                py = aux->sgte;
+            }
+            }
+            aux = aux->sgte;
+            cont_x++;
+            cont_y++;
+            aux = px->sgte;
+            px->sgte = py->sgte;
+            py->sgte = aux;
+            apy->sgte = px;
+            apx->sgte = py;
+        }
+    return nueva;
 }
 /* Inserta los elementos de lst_b en la lst_a luego de la ubicaci´on x */
 LISTA insertar(LISTA lst_a, LISTA lst_b, int x);
@@ -211,10 +250,11 @@ int main() {
     lst = agregaPersonaje(lst, hugo);
     lst = agregaPersonaje(lst, cristopher);
 
+    printf("\nLista 1:\n");
     verPersonajes(lst);
 
-    lst = intercambio(lst, 2, 3);
-
+    lst = intercambio(lst, 5,1);
+    printf("\nLista 3:\n");
     verPersonajes(lst);
 
     /*int op;
