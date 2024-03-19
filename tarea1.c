@@ -298,11 +298,25 @@ LISTA intercambio(LISTA lista, int x, int y){
 /* Elimina un personaje, dado su nombre*/
 LISTA eliminaPorNombre(LISTA lst, char *victima){
     PERSONAJE aux = lst.primero;
-    // -----------------------TODO------------------
-    while(aux->sgte != NULL){
-        
+    PERSONAJE anterior = NULL;
+    if(comparar(aux->nombre, victima) == 1){
+        lst.primero = aux->sgte;
+        lst.total--;
+        return lst;
     }
-}
+    anterior = aux;
+    aux = aux->sgte;
+    while(aux != NULL){
+        if(comparar(aux->nombre, victima) == 1){
+            anterior->sgte = aux->sgte;
+            lst.total--;
+            return lst;
+        }
+        anterior = aux;
+        aux = aux->sgte;
+    }
+    printf("\nNo existe un personaje con el nombre %s\n", victima);
+    }
 
 /* Inserta los elementos de lst_b en la lst_a luego de la ubicacion x */
 LISTA insertar(LISTA lst_a, LISTA lst_b, int x){

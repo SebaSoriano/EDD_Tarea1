@@ -12,18 +12,19 @@ ser ´unicos en la lista. ** TODO **
 (b) Mostrar la cantidad de elementos de cada lista creada. ** LISTO **
 
 (c) Mostrar los elementos de 2 listas creadas. ** LISTO **
-~~ (d) Dada una ubicaci´on, eliminar de una de las listas (seleccionada por el usuario) el elemento
-ubicado en el valor ingresado. ~~
 
-(e) Dado el nombre de un personaje, eliminar de una de las listas (seleccionada por el
-usuario) el personaje con el nombre indicado. ** TODO **
+~~(d) Dada una ubicaci´on, eliminar de una de las listas (seleccionada por el usuario) el elemento
+ubicado en el valor ingresado.~~
 
-~~ (f) Dadas 2 ubicaciones, x e y, crear una tercera lista conteniendo los elementos de la lista
+~~(e) Dado el nombre de un personaje, eliminar de una de las listas (seleccionada por el
+usuario) el personaje con el nombre indicado.~~
+
+~~(f) Dadas 2 ubicaciones, x e y, crear una tercera lista conteniendo los elementos de la lista
 con los elementos de la ubicacion x e y intercambiados. Luego de ejecutar la opcion
 deber´a mostrar el contenido de las listas iniciales y de la lista resultado; esto es porque
-las listas originales deben mantenerse intactas. ~~
+las listas originales deben mantenerse intactas.~~
 
-(g) Considerando las listas creadas en la opci´on (a), seleccionar el orden de tratamiento de
+(g) Considerando las listas creadas en la opcion (a), seleccionar el orden de tratamiento de
 las listas y un valor ingresado (que representa una ubicacion dentro de la primera lista
 seleccionada) se pide insertar la segunda lista despues de la ubicacion indicada. **TODO **
 
