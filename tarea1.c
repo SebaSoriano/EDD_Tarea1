@@ -18,14 +18,84 @@ PERSONAJE primero;
 int total;
 } LISTA;
 
+LISTA creaLista();
+PERSONAJE crear(char *nombre, int popularidad);
+LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo);
+LISTA intercambio(LISTA lista, int x, int y);
+void verPersonajes(LISTA lista);
+int comparar(char *nombre1, char *nombre2);
+LISTA elimina(LISTA lst, int x);
+LISTA eliminaPorNombre(LISTA lst, char *victima);
+LISTA insertar(LISTA lst_a, LISTA lst_b, int x);
+LISTA seleccion(LISTA lst, int minimo, int maximo);
+
+
+
+
+
+
+int main() {
+    PERSONAJE lukas = crear("1-Lukas", 10);
+    PERSONAJE maxi = crear("2-Maxi", 10);
+    PERSONAJE santi = crear("3-Santi", 10);
+    PERSONAJE hugo = crear("4-Hugo", 10);
+    PERSONAJE cristopher = crear("5-Cristopher", 10);
+
+    LISTA lst = creaLista();
+
+    lst = agregaPersonaje(lst, lukas);
+    lst = agregaPersonaje(lst, maxi);
+    lst = agregaPersonaje(lst, santi);
+    lst = agregaPersonaje(lst, hugo);
+    lst = agregaPersonaje(lst, cristopher);
+
+    printf("\nLista 1:\n");
+    verPersonajes(lst);
+
+    lst = intercambio(lst, 5,1);
+    printf("\nLista 3:\n");
+    verPersonajes(lst);
+
+    /*int op;
+    do{
+        printf("Menu:\n");
+        printf("1. Crear listas\n");
+        printf("2. Option 2\n");
+        printf("3. Option 3\n");
+        printf("Enter your choice: ");
+        scanf("%d", &op);
+    
+        switch(op) {
+            case 1:
+                LISTA lst1 = creaLista();
+                LISTA lst2 = creaLista();
+                PERSONAJE p = crearPersonaje();
+                break;
+            case 2:
+             // Code for option 2
+                break;
+            case 3:
+             // Code for option 3
+              break;
+            default:
+             printf("Invalid choice\n");
+             break;
+    }
+    }while(op!=0); */
+
+
+
+    return 1;
+}
 
 /* Crea y retorna una lista vacia */
-LISTA crearLista(){
+LISTA creaLista(){
     LISTA lista;
     lista.primero = NULL;
     lista.total = 0;
     return lista;
 }
+
 /* Crea y retorna un personaje */
 PERSONAJE crear(char *nombre, int popularidad){
     PERSONAJE nuevo = (PERSONAJE)malloc(sizeof(struct s_personaje));
@@ -73,7 +143,6 @@ LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo){
     return lista;
 }
 
-
 /* Muestra los personajes registrados */
 void verPersonajes(LISTA lista){
     PERSONAJE aux = lista.primero;
@@ -112,24 +181,17 @@ LISTA elimina(LISTA lst, int x){
 
 }
 
-/* Elimina un personaje, dado su nombre */
-LISTA eliminaPorNombre(LISTA lst, char *victima){
-    PERSONAJE aux = lst.primero;
-    
-    while(aux->sgte != NULL){
-        
-    }
-}
+
 /* Crea y retorna una nueva lista intercambiando el orden de 2 personajes (ubicados en la posici´on x e y) */
 LISTA intercambio(LISTA lista, int x, int y){
     PERSONAJE aux = lista.primero;
     PERSONAJE auxnuevo = NULL;
-    LISTA nueva = crearLista();
+    LISTA nueva = creaLista();
     for(int i=1; i<=lista.total; i++){
         auxnuevo = crear(aux->nombre, aux->popularidad);
         nueva = agregaPersonaje(nueva, auxnuevo);
         aux = aux->sgte;
-            }
+    }
     aux = nueva.primero;
 
     PERSONAJE px = NULL;
@@ -229,62 +291,26 @@ LISTA intercambio(LISTA lista, int x, int y){
             py->sgte = aux;
             apy->sgte = px;
             apx->sgte = py;
-        }
+    }
     return nueva;
 }
-/* Inserta los elementos de lst_b en la lst_a luego de la ubicaci´on x */
-LISTA insertar(LISTA lst_a, LISTA lst_b, int x);
 
-int main() {
-    PERSONAJE lukas = crear("1-Lukas", 10);
-    PERSONAJE maxi = crear("2-Maxi", 10);
-    PERSONAJE santi = crear("3-Santi", 10);
-    PERSONAJE hugo = crear("4-Hugo", 10);
-    PERSONAJE cristopher = crear("5-Cristopher", 10);
-
-    LISTA lst = crearLista();
-
-    lst = agregaPersonaje(lst, lukas);
-    lst = agregaPersonaje(lst, maxi);
-    lst = agregaPersonaje(lst, santi);
-    lst = agregaPersonaje(lst, hugo);
-    lst = agregaPersonaje(lst, cristopher);
-
-    printf("\nLista 1:\n");
-    verPersonajes(lst);
-
-    lst = intercambio(lst, 5,1);
-    printf("\nLista 3:\n");
-    verPersonajes(lst);
-
-    /*int op;
-    do{
-        printf("Menu:\n");
-        printf("1. Crear listas\n");
-        printf("2. Option 2\n");
-        printf("3. Option 3\n");
-        printf("Enter your choice: ");
-        scanf("%d", &op);
-    
-        switch(op) {
-            case 1:
-                LISTA lst1 = crearLista();
-                LISTA lst2 = crearLista();
-                PERSONAJE p = crearPersonaje();
-                break;
-            case 2:
-             // Code for option 2
-                break;
-            case 3:
-             // Code for option 3
-              break;
-            default:
-             printf("Invalid choice\n");
-             break;
+/* Elimina un personaje, dado su nombre*/
+LISTA eliminaPorNombre(LISTA lst, char *victima){
+    PERSONAJE aux = lst.primero;
+    // -----------------------TODO------------------
+    while(aux->sgte != NULL){
+        
     }
-    }while(op!=0); */
+}
 
+/* Inserta los elementos de lst_b en la lst_a luego de la ubicacion x */
+LISTA insertar(LISTA lst_a, LISTA lst_b, int x){
+ //------------------------------------TODO-----------------------------------
+}
 
+/* Genera una lista considerando todos los personajes de lst cuya popularidad se encuentre entre los valores mınimo y maximo */
+LISTA seleccion(LISTA lst, int minimo, int maximo){
+    //------------------------------------TODO-----------------------------------
 
-    return 1;
 }
