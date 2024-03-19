@@ -2,32 +2,40 @@
 
 ## REQUERIMIENTOS
 
-1. Presentar un men´u de opciones que se debe repetir hasta que el usuario indique salir del
+1. Presentar un menu de opciones que se debe repetir hasta que el usuario indique salir del
 programa.
-2. Opciones de men´u para:
+2. Opciones de menu para:
 (a) Crear 2 listas de personajes, ingresando para cada personaje su nombre y su popularidad.
 Luego de crearlas se debe mostrar el contenido de cada una de ellas. Los personajes deben
-ser ´unicos en la lista.
-(b) Mostrar la cantidad de elementos de cada lista creada.
-(c) Mostrar los elementos de 2 listas creadas.
-(d) Dada una ubicaci´on, eliminar de una de las listas (seleccionada por el usuario) el elemento
-ubicado en el valor ingresado.
+ser ´unicos en la lista. ** TODO **
+
+(b) Mostrar la cantidad de elementos de cada lista creada. ** LISTO **
+
+(c) Mostrar los elementos de 2 listas creadas. ** LISTO **
+~~ (d) Dada una ubicaci´on, eliminar de una de las listas (seleccionada por el usuario) el elemento
+ubicado en el valor ingresado. ~~
+
 (e) Dado el nombre de un personaje, eliminar de una de las listas (seleccionada por el
-usuario) el personaje con el nombre indicado.
-(f) Dadas 2 ubicaciones, x e y, crear una tercera lista conteniendo los elementos de la lista
-con los elementos de la ubicaci´on x e y intercambiados. Luego de ejecutar la opci´on
+usuario) el personaje con el nombre indicado. ** TODO **
+
+~~ (f) Dadas 2 ubicaciones, x e y, crear una tercera lista conteniendo los elementos de la lista
+con los elementos de la ubicacion x e y intercambiados. Luego de ejecutar la opcion
 deber´a mostrar el contenido de las listas iniciales y de la lista resultado; esto es porque
-las listas originales deben mantenerse intactas.
+las listas originales deben mantenerse intactas. ~~
+
 (g) Considerando las listas creadas en la opci´on (a), seleccionar el orden de tratamiento de
-las listas y un valor ingresado (que representa una ubicaci´on dentro de la primera lista
-seleccionada) se pide insertar la segunda lista despu´es de la ubicaci´on indicada.
-(h) Dados 2 valores enteros que representan popularidad m´ınima y m´axima, crear una lista
+las listas y un valor ingresado (que representa una ubicacion dentro de la primera lista
+seleccionada) se pide insertar la segunda lista despues de la ubicacion indicada. **TODO **
+
+(h) Dados 2 valores enteros que representan popularidad mınima y maxima, crear una lista
 de los personajes de una de las listas (seleccionada por el usuario) de la opci´on (a)
 considerando todos los personajes cuya popularidad se encuentre dentro del rango de
-popularidad, luego deber´a mostrar la lista resultado.
-(i) Salir del programa
-3. La opci´on de men´u (b) en adelante requiere de la ejecuci´on previa de la opci´on (a) , de lo
-contrario debe advertir de la ausencia de datos a procesar.
+popularidad, luego deber´a mostrar la lista resultado. ** TODO **
+
+(i) Salir del programa ** TODO **
+
+3. La opcion de menu (b) en adelante requiere de la ejecucion previa de la opcion (a) , de lo
+contrario debe advertir de la ausencia de datos a procesar. ** TODO **
 
 ## RESTRICCIONES
 
