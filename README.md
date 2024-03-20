@@ -7,13 +7,13 @@ programa.
 
 2. Opciones de menu para:
 
-(a) Crear 2 listas de personajes, ingresando para cada personaje su nombre y su popularidad.
+~~(a) Crear 2 listas de personajes, ingresando para cada personaje su nombre y su popularidad.
 Luego de crearlas se debe mostrar el contenido de cada una de ellas. Los personajes deben
-ser ´unicos en la lista. ** TODO **
+ser ´unicos en la lista.~~
 
-(b) Mostrar la cantidad de elementos de cada lista creada. **LISTO**
+~~(b) Mostrar la cantidad de elementos de cada lista creada.~~
 
-(c) Mostrar los elementos de 2 listas creadas. **LISTO**
+~~(c) Mostrar los elementos de 2 listas creadas.~~
 
 ~~(d) Dada una ubicaci´on, eliminar de una de las listas (seleccionada por el usuario) el elemento
 ubicado en el valor ingresado.~~
@@ -26,19 +26,19 @@ con los elementos de la ubicacion x e y intercambiados. Luego de ejecutar la opc
 deber´a mostrar el contenido de las listas iniciales y de la lista resultado; esto es porque
 las listas originales deben mantenerse intactas.~~
 
-(g) Considerando las listas creadas en la opcion (a), seleccionar el orden de tratamiento de
+~~(g) Considerando las listas creadas en la opcion (a), seleccionar el orden de tratamiento de
 las listas y un valor ingresado (que representa una ubicacion dentro de la primera lista
-seleccionada) se pide insertar la segunda lista despues de la ubicacion indicada. **TODO**
+seleccionada) se pide insertar la segunda lista despues de la ubicacion indicada.~~
 
-(h) Dados 2 valores enteros que representan popularidad mınima y maxima, crear una lista
+~~(h) Dados 2 valores enteros que representan popularidad mınima y maxima, crear una lista
 de los personajes de una de las listas (seleccionada por el usuario) de la opci´on (a)
 considerando todos los personajes cuya popularidad se encuentre dentro del rango de
-popularidad, luego deber´a mostrar la lista resultado. **TODO**
+popularidad, luego deber´a mostrar la lista resultado.~~
 
-(i) Salir del programa ** TODO **
+~~(i) Salir del programa~~
 
-3. La opcion de menu (b) en adelante requiere de la ejecucion previa de la opcion (a) , de lo
-contrario debe advertir de la ausencia de datos a procesar. ** TODO **
+~~3. La opcion de menu (b) en adelante requiere de la ejecucion previa de la opcion (a) , de lo
+contrario debe advertir de la ausencia de datos a procesar.~~
 
 ## RESTRICCIONES
 
@@ -50,9 +50,9 @@ secci´on de PROTOTIPO DE FUNCIONES
 4. Usted deber´a combinar las llamadas a las funciones de forma adecuada para permitir el
 cumplimiento de todos los requerimientos.
 
-
 ### DEFINICION DE ESTRUCTURAS DE DATOS
-```
+
+```C
 typedef struct s_personaje{
 char nombre[50];
 int popularidad;
@@ -66,7 +66,7 @@ int total;
 
 ### PROTOTIPO DE FUNCIONES
 
-```
+```C
 /* Crea y retorna una lista vac´ıa */
 LISTA creaLista();
 /* Crea y retorna un personaje */
@@ -90,14 +90,14 @@ LISTA seleccion(LISTA lst, int minimo, int maximo);
 
 ## PLAZOS DE ENTREGA
 
-En la plataforma MOODLE, VIERNES 22 DE MARZO hasta las 23:00. 
+En la plataforma MOODLE, VIERNES 22 DE MARZO hasta las 23:00.
 
 ## CONDICIONES DE ENTREGA
 
 1. Desarrollado en grupos de 2 personas.
-2. Entrega de c´odigo fuente con la debida documentaci´on.
-3. Las copias ser´an evaluadas con la nota m´ınima sin derecho a apelaci´on.
+2. Entrega de codigo fuente con la debida documentaci´on.
+3. Las copias seran evaluadas con la nota mınima sin derecho a apelacion.
 4. Se debe programar en C.
 5. Se debe usar punteros y definici´on de tipos de datos.
-6. Queda prohibido usar librer´ıas exclusivas de windows. La calificaci´on de la tarea QUEDARA´
+6. Queda prohibido usar librerıas exclusivas de windows. La calificacion de la tarea QUEDARA
 DESCARTADA si se da el caso
