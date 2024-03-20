@@ -32,7 +32,12 @@ LISTA eliminaPorNombre(LISTA lst, char *victima);
 LISTA intercambio(LISTA lista, int x, int y);
 LISTA insertar(LISTA lst_a, LISTA lst_b, int x);
 LISTA seleccion(LISTA lst, int minimo, int maximo);
+PILA masPopulares(LISTA primera, LISTA segunda);
 
+
+PILA creaPila();
+PILA apilar(PILA pila, PERSONAJE nuevo);
+void verPjPila(PILA pila);
 int comparar(char *nombre1, char *nombre2);
 LISTA copiarLista(LISTA lst);
 
@@ -50,6 +55,7 @@ int main() {
     int x;
     LISTA lista1 = creaLista();
     LISTA lista2 = creaLista();
+    PILA pila = creaPila();
 
     do
     {
@@ -63,6 +69,8 @@ int main() {
         printf("6. Intercambiar personajes de una lista ingresando dos ubicaciones\n");
         printf("7. Insertar personajes de una lista en otra\n");
         printf("8. Filtrar personajes por popularidad\n");
+        printf("9. Apilar comparando mayores popularidades\n");
+        printf("10. Mostrar pila de opcion [9]\n");
         printf("0. Salir\n");
         printf("---------------------------------------------------------\n");
         printf("Ingrese una opcion: ");
@@ -98,7 +106,7 @@ int main() {
                 printf("\nListas creadas con exito\n");
                 printf("\nLista 1: \n");
                 verPersonajes(lista1);
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
                 printf("\nLista 2: \n");
                 verPersonajes(lista2);
                 printf("--------------------------------------------------------------------------------\n");
@@ -118,7 +126,7 @@ int main() {
                 system("clear");
                 printf("\n-------------------------TAREA 1-------------------------\n");
                 printf("\nLa lista 1 contiene %d personaje(s)\n", lista1.total);
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
                 printf("\nLa lista 2 contiene %d personaje(s)\n", lista2.total);
                 printf("--------------------------------------------------------------------------------\n");
                 printf("\nPresione enter para continuar...");
@@ -138,10 +146,10 @@ int main() {
                 printf("\n-------------------------TAREA 1-------------------------\n");
                 printf("\nLista 1: \n");
                 verPersonajes(lista1);
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
                 printf("\nLista 2: \n");
                 verPersonajes(lista2);
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
                 printf("\nPresione enter para continuar...");
                 getchar();
                 getchar();
@@ -218,8 +226,20 @@ int main() {
                 scanf("%d", &x);
                 if(n == 1){
                     caso6 = intercambio(lista1, m, x);
+                    if(lista1.total < m || lista1.total < x){
+                        printf("\nPresione enter para continuar...");
+                        getchar();
+                        getchar();
+                        break;
+                    }
                 }else if(n == 2){
                     caso6 = intercambio(lista2, m, x);
+                    if(lista2.total < m || lista2.total < x){
+                        printf("\nPresione enter para continuar...");
+                        getchar();
+                        getchar();
+                        break;
+                    }
                 }else{
                     printf("\nValor de lista invalido\n");
                     printf("\nPresione enter para continuar...");
@@ -227,17 +247,17 @@ int main() {
                     getchar();
                     break;
                 }
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
                 printf("\nLista inicial: \n");
                 if(n == 1){
                     verPersonajes(lista1);
                 }else{
                     verPersonajes(lista2);
                 }
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
                 printf("\nLista intercambiando el objeto de posición [%d] con el de posicion [%d]: \n", m, x);
                 verPersonajes(caso6);
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
                 printf("\nPresione enter para continuar...");
                 getchar();
                 getchar();
@@ -300,18 +320,67 @@ int main() {
                 }else{
                     printf("\nValor de lista invalido\n");
                 }
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
                 printf("\nLista N°%d con las popularidades filtradas entre %d y %d: \n", n, m, x);
                 verPersonajes(caso8);
-                printf("\n--------------------------------------------------------------------------------\n");
+                printf("\n---------------------------------------------------------\n");
+                printf("\nPresione enter para continuar...");
+                getchar();
+                getchar();
+                break;
+            // 9.- Apilar comparando mayores popularidades
+            case 9:
+                if(flag == 0){
+                    printf("\nPrimero debe crear las listas\n");
+                    printf("\nPresione enter para continuar...");
+                    getchar();
+                    getchar();
+                    break;
+                }
+                system("clear");
+                printf("\n-------------------------TAREA 1-------------------------\n");
+                printf("\nSeleccione la pila a la cual desea ingresar como la primera (1 o 2): \n");
+                scanf("%d", &n);
+                if(n == 1){
+                    pila = masPopulares(lista1, lista2);
+                }else if(n == 2){
+                    pila = masPopulares(lista2, lista1);
+                }else{
+                    printf("\nValor de lista invalido\n");
+                    printf("\nPresione enter para continuar...");
+                    getchar();
+                    getchar();
+                    break;
+                }
+                printf("\nListas apiladas con exito\n");
+                printf("\nPresione enter para continuar...");
+                getchar();
+                getchar();
+                break;
+            // 10.- Mostrar pila de opcion [9]
+            case 10:
+                if(flag == 0){
+                    printf("\nPrimero debe crear las listas\n");
+                    printf("\nPresione enter para continuar...");
+                    getchar();
+                    getchar();
+                    break;
+                }
+                system("clear");
+                printf("\n-------------------------TAREA 1-------------------------\n");
+                printf("\nPila: \n");
+                verPjPila(pila);
+                printf("\n---------------------------------------------------------\n");
                 printf("\nPresione enter para continuar...");
                 getchar();
                 getchar();
                 break;
 
+
+
         }    
     }while (op != 0);
-    printf("\n-------FIN DE LA SESIÓN-------\n");
+    printf("\n---------------------FIN DE LA SESIÓN---------------------\n");
     return 1;
 }
 
@@ -592,4 +661,89 @@ LISTA seleccion(LISTA lst, int minimo, int maximo){
         aux = aux->siguiente;
     }
     return nueva;
+}
+
+/* Crea y retorna una pila vacia */
+PILA creaPila(){
+    PILA pila;
+    pila.tope = NULL;
+    pila.total = 0;
+    return pila;
+}
+
+/* Apila un personaje y retorna la pila */
+PILA apilar(PILA pila, PERSONAJE nuevo){
+    PERSONAJE aux = pila.tope;
+    if(aux == NULL){
+        pila.tope = nuevo;
+    }else{
+        nuevo->siguiente = aux;
+        pila.tope = nuevo;
+    }
+    pila.total++;
+    return pila;
+}
+
+/* Procesa los elementos de acuerdo con lo indicado en el requerimiento */
+PILA masPopulares(LISTA primera, LISTA segunda){
+    PILA pila = creaPila();
+    PERSONAJE aux1 = primera.primero;
+    PERSONAJE aux2 = segunda.primero;
+    if(aux1->popularidad > aux2->popularidad){
+        pila = apilar(pila, crear(aux1->nombre, aux1->popularidad));
+    }else if(aux1->popularidad < aux2->popularidad){
+        pila = apilar(pila, crear(aux2->nombre, aux2->popularidad));
+    }
+
+    if(primera.total < segunda.total){
+        while(aux1->siguiente != NULL){
+            aux1 = aux1->siguiente;
+            aux2 = aux2->siguiente;
+            if(aux1->popularidad > aux2->popularidad){
+                pila = apilar(pila, crear(aux1->nombre, aux1->popularidad));
+            }else if (aux1->popularidad < aux2->popularidad){
+                pila = apilar(pila, crear(aux2->nombre, aux2->popularidad));
+            }
+
+        }
+            aux1 = aux2->siguiente;
+        while(aux2->siguiente != NULL){
+            aux2 = aux2->siguiente;
+            if(aux1->popularidad > aux2->popularidad){
+                aux1 = aux2;
+            } 
+        }
+        pila = apilar(pila, crear(aux1->nombre, aux1->popularidad));
+    }
+    else if(primera.total > segunda.total){
+        while(aux2->siguiente != NULL){
+            aux1 = aux1->siguiente;
+            aux2 = aux2->siguiente;
+            if(aux1->popularidad > aux2->popularidad){
+                pila = apilar(pila, crear(aux1->nombre, aux1->popularidad));
+            }else if (aux1->popularidad < aux2->popularidad){
+                pila = apilar(pila, crear(aux2->nombre, aux2->popularidad));
+            }
+        }
+        aux2 = aux1->siguiente;
+        while(aux1->siguiente != NULL){
+            aux1 = aux1->siguiente;
+            if(aux1->popularidad > aux2->popularidad){
+                aux2 = aux1;
+            } 
+        }
+        pila = apilar(pila, crear(aux2->nombre, aux2->popularidad));
+    }
+    return pila;
+}
+
+void verPjPila(PILA pila){
+    PERSONAJE aux = pila.tope;
+    if(aux == NULL){
+        printf("\nLa pila esta vacia\n");
+    }
+    while(aux != NULL){
+        printf("\nNombre: %s\nPopularidad: %d\n", aux->nombre, aux->popularidad);
+        aux = aux->siguiente;
+    }
 }
