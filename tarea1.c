@@ -6,6 +6,9 @@
 #include<string.h>
 #include<ctype.h>
 
+//Sebastian Soriano
+//Hugo Hernandez
+
 typedef struct s_personaje{
     char nombre[50];
     int popularidad;
