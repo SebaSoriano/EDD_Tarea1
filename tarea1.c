@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author  Hugo Hernandez
+ * @author  Sebastian Soriano
+ * 
+ */
+
 #include<stdio.h>
 #include<stdlib.h> 
 #include<stdbool.h>
@@ -6,15 +13,13 @@
 #include<string.h>
 #include<ctype.h>
 
-//Sebastian Soriano
-//Hugo Hernandez
+/* --------------------------------------------------------------//-------------------------------------------------------------- */
 
 typedef struct s_personaje{
     char nombre[50];
     int popularidad;
     struct s_personaje *siguiente;
 } *PERSONAJE;
-
 
 typedef struct s_lista{
     PERSONAJE primero;
@@ -45,9 +50,7 @@ int comparar(char *nombre1, char *nombre2);
 LISTA copiarLista(LISTA lst);
 
 
-
-
-
+/* --------------------------------------------------------------//-------------------------------------------------------------- */
 
 
 int main() {
@@ -404,6 +407,7 @@ PERSONAJE crear(char *nombre, int popularidad){
     return nuevo;
 }
 
+// Compara dos strings sin considerar mayusculas
 int comparar(char *nombre1, char *nombre2){
     int i = 0;
     while(nombre1[i] != '\0' && nombre2[i] != '\0'){
@@ -740,6 +744,7 @@ PILA masPopulares(LISTA primera, LISTA segunda){
     return pila;
 }
 
+// Muestra en pantalla los personajes de la pila
 void verPjPila(PILA pila){
     PERSONAJE aux = pila.tope;
     if(aux == NULL){
