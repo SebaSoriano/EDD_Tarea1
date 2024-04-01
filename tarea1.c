@@ -2,6 +2,7 @@
  * 
  * @author  Hugo Hernandez
  * @author  Sebastian Soriano
+ * @version 1.0.1
  * 
  */
 
@@ -390,7 +391,11 @@ int main() {
     return 1;
 }
 
-/* Crea y retorna una lista vacia */
+/**
+ * @brief Crea y retorna una lista vacia.
+ * 
+ * @return lista vacía
+ */
 LISTA creaLista(){
     LISTA lista;
     lista.primero = NULL;
@@ -398,7 +403,13 @@ LISTA creaLista(){
     return lista;
 }
 
-/* Crea y retorna un personaje */
+/**
+ * @brief Crea y retorna un personaje.
+ * 
+ * @param nombre nombre del personaje
+ * @param popularidad su valor de popularidad
+ * @return personaje creado
+ */
 PERSONAJE crear(char *nombre, int popularidad){
     PERSONAJE nuevo = (PERSONAJE)malloc(sizeof(struct s_personaje));
     strcpy(nuevo->nombre, nombre);
@@ -407,7 +418,14 @@ PERSONAJE crear(char *nombre, int popularidad){
     return nuevo;
 }
 
-// Compara dos strings sin considerar mayusculas
+/**
+ * @brief Compara dos strings sin considerar mayusculas.
+ * 
+ * @param nombre1 primer nombre a comparar
+ * @param nombre2 segundo nombre a comparar
+ * @retval 1 si son iguales
+ * @retval 0 si son distintos
+ */
 int comparar(char *nombre1, char *nombre2){
     int i = 0;
     while(nombre1[i] != '\0' && nombre2[i] != '\0'){
@@ -422,7 +440,13 @@ int comparar(char *nombre1, char *nombre2){
     return 0;
 }
 
-/* Agrega un personaje a la lista y retorna la lista */
+/** 
+ * @brief un personaje a la lista y retorna la lista.
+ * 
+ * @param lista lista seleccionada
+ * @param nuevo persoaje a ser agregado
+ * @return Lista con el personaje agregado
+ */
 LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo){
     PERSONAJE aux = lista.primero;
     if(aux == NULL){
@@ -446,7 +470,11 @@ LISTA agregaPersonaje(LISTA lista, PERSONAJE nuevo){
     return lista;
 }
 
-/* Muestra los personajes registrados */
+/** 
+ * @brief Muestra los personajes registrados.
+ * 
+ * @param lista lista selecccionada
+ */
 void verPersonajes(LISTA lista){
     PERSONAJE aux = lista.primero;
     while(aux != NULL){
@@ -455,7 +483,13 @@ void verPersonajes(LISTA lista){
     }
 }
 
-/* Elimina un personaje de la lista, dada la ubicacion x (partiendo desde 1) */
+/**
+ * @brief Elimina un personaje de la lista, dada la ubicacion x (partiendo desde 1).
+ * 
+ * @param lst lista seleccioanda
+ * @param x ubicacion seleccionada
+ * @return lista con el personaje eliminado
+ */
 LISTA elimina(LISTA lst, int x){
     PERSONAJE aux = lst.primero;
     PERSONAJE anterior;
@@ -481,7 +515,12 @@ LISTA elimina(LISTA lst, int x){
 
 }
 
-/* Crea y retorna una nueva lista con los NUEVOS personajes copiados de la lista original */
+/**
+ * @brief Crea y retorna una nueva lista con los NUEVOS personajes copiados de la lista original.
+ * 
+ * @param lst lista a ser copiada
+ * @return la copia de la lista
+ */
 LISTA copiarLista(LISTA lst){
     PERSONAJE aux = lst.primero;
     LISTA nueva = creaLista();
@@ -492,7 +531,14 @@ LISTA copiarLista(LISTA lst){
     return nueva;
 }
 
-/* Crea y retorna una nueva lista intercambiando el orden de 2 personajes (ubicados en la posici´on x e y) */
+/**
+ * @brief Crea y retorna una nueva lista intercambiando el orden de 2 personajes (ubicados en la posicion x e y).
+ * 
+ * @param lista lista seleccioanda
+ * @param x posicion X para intercambiar
+ * @param y posicion Y para intercambiar
+ * @return la lista con los personajes intercambiados X e Y
+ */
 LISTA intercambio(LISTA lista, int x, int y){
     LISTA nueva = copiarLista(lista);
     PERSONAJE aux = nueva.primero;
@@ -598,7 +644,13 @@ LISTA intercambio(LISTA lista, int x, int y){
     return nueva;
 }
 
-/* Elimina un personaje, dado su nombre*/
+/**
+ * @brief Elimina un personaje, dado su nombre.
+ * 
+ * @param lst lista seleccioanda
+ * @param victima nombre del personaje eliminado
+ * @return lista con el personaje eliminado (si es que existía)
+ * */
 LISTA eliminaPorNombre(LISTA lst, char *victima){
     PERSONAJE aux = lst.primero;
     PERSONAJE anterior = NULL;
@@ -622,7 +674,14 @@ LISTA eliminaPorNombre(LISTA lst, char *victima){
     return lst;
     }
 
-/* Inserta los elementos de lst_b en la lst_a luego de la ubicacion x */
+/**
+ * @brief Insertar los elementos de lst_b en la lst_a luego de la ubicacion x.
+ * 
+ * @param lst_a lista a la cual se le agregaran personajes
+ * @param lst_b lista la cual será insertada en la otra
+ * @param x posicion a la cual se le agregaran los personajes a la lst_a
+ * @return lst_a con personajes de lst_b insertados en posicion X
+ */
 LISTA insertar(LISTA lst_a, LISTA lst_b, int x){
     LISTA copia_a = copiarLista(lst_a);
     LISTA copia_b = copiarLista(lst_b);
@@ -656,8 +715,15 @@ LISTA insertar(LISTA lst_a, LISTA lst_b, int x){
     return copia_a;
 }
 
-/* Genera una lista considerando todos los personajes de lst cuya popularidad se encuentre entre los valores mınimo y maximo
- * Estos maximos y minimos son INCLUSIVOS! */
+/**
+ * @brief Genera una lista considerando todos los personajes de lst cuya popularidad se encuentre entre los valores mınimo y maximo
+ * Estos maximos y minimos son INCLUSIVOS!
+ * 
+ * @param lst lista a la cual se le filtraran los personajes
+ * @param minimo minimo
+ * @param maximo maximo
+ * @return lista con los personajes filtrados
+ */
 LISTA seleccion(LISTA lst, int minimo, int maximo){
     LISTA nueva = creaLista();
     PERSONAJE aux = lst.primero;
@@ -670,7 +736,11 @@ LISTA seleccion(LISTA lst, int minimo, int maximo){
     return nueva;
 }
 
-/* Crea y retorna una pila vacia */
+/**
+ * @brief Crea y retorna una pila vacia.
+ * 
+ * @return pila vacia
+ */
 PILA creaPila(){
     PILA pila;
     pila.tope = NULL;
@@ -678,7 +748,13 @@ PILA creaPila(){
     return pila;
 }
 
-/* Apila un personaje y retorna la pila */
+/**
+ * @brief Apila un personaje y retorna la pila.
+ * 
+ * @param pila pila seleccionada
+ * @param nuevo personaje a ser agregado a la pila
+ * @return pila con el personaje agregado
+ */
 PILA apilar(PILA pila, PERSONAJE nuevo){
     PERSONAJE aux = pila.tope;
     if(aux == NULL){
@@ -691,7 +767,20 @@ PILA apilar(PILA pila, PERSONAJE nuevo){
     return pila;
 }
 
-/* Procesa los elementos de acuerdo con lo indicado en el requerimiento */
+/**
+ * @brief Procesa los elementos de acuerdo con lo indicado en el requerimiento
+ * 
+ * @details toma cada elemento de cada lista (partiendo
+    por el primero ingresado) y se guarde en la pila el personaje de mayor popularidad entre
+    los 2. En caso de que las listas contengan distinta cantidad de elementos, entonces se
+    deben considerar 2 situaciones:
+        * En caso de que sobren elementos de la primera: seleccionar el de mayor popularidad y agregarlo a la pila.
+        * En caso de que sobren elementos de la segunda:seleccionar el de menor popularidad y agregarlo a la pila
+ * 
+ * @param primera primera lista
+ * @param segunda segunda lista
+ * @return PILA con los mas populares de las listas
+ */
 PILA masPopulares(LISTA primera, LISTA segunda){
     PILA pila = creaPila();
     PERSONAJE aux1 = primera.primero;
